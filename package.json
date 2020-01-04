@@ -2,7 +2,7 @@
   "name": "com.cysharp.unitask",
   "author": "cysharp",
   "displayName": "UniTask",
-  "version": "7.1.0",
+  "version": "1.2.0",
   "unity": "2018.3",
   "description": "UniTask (UniRx.Async)",
   "type": "library"
