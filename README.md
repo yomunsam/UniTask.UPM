@@ -11,5 +11,5 @@ UniTask repository address: [github.com/Cysharp/UniTask](https://github.com/Cysh
 Use Unirx by UPM:
 
 ```
-https://github.com/yomunsam/UniTask.UPM.git
+git://github.com/yomunsam/UniTask.UPM.git
 ```
