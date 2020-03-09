@@ -746,8 +746,16 @@ namespace UniRx.Async
                 this.continuationAction = null;
             }
 
-            public bool IsCompleted => status.IsCompleted();
-            public AwaiterStatus Status => status;
+            public bool IsCompleted => this.Status.IsCompleted();
+            public AwaiterStatus Status
+            {
+                get
+                {
+                    if (this.asyncOperation.isDone && !this.status.IsCompleted())
+                        this.status = AwaiterStatus.Succeeded;
+                    return this.status;
+                }
+            }
 
             public UnityWebRequest GetResult()
             {
@@ -794,6 +802,12 @@ namespace UniRx.Async
             {
                 Error.ThrowWhenContinuationIsAlreadyRegistered(continuationAction);
                 continuationAction = continuation.AsFuncOfT<AsyncOperation>();
+
+                if (this.asyncOperation.isDone)
+                {
+                    continuation?.Invoke();
+                    return;
+                }
                 asyncOperation.completed += continuationAction;
             }
         }
