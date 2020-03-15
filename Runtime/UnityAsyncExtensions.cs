@@ -751,7 +751,7 @@ namespace UniRx.Async
             {
                 get
                 {
-                    if (this.asyncOperation.isDone && !this.status.IsCompleted())
+                    if (this.asyncOperation != null && this.asyncOperation.isDone && !this.status.IsCompleted())
                         this.status = AwaiterStatus.Succeeded;
                     return this.status;
                 }
